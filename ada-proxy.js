@@ -49,4 +49,8 @@ var options = {
 	options.port = parseInt(options.port);
 })();
 
-require('ada-proxy-core') (options, require('./jobs.json'));
+var proxy = require('ada-proxy-core') (options, require('./jobs.json'));
+proxy.on('updatedSelf', function () {
+	console.log('Recieved an update signal exiting.');
+	process.exit();
+});
