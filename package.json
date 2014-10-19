@@ -1,6 +1,6 @@
 {
   "name": "ada-proxy",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Proxy settings for my server",
   "main": "ada-proxy.js",
   "scripts": {
