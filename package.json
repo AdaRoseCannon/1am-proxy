@@ -2,19 +2,14 @@
   "name": "ada-proxy",
   "version": "0.0.0",
   "description": "Proxy for my server",
-  "main": "index.js",
+  "main": "ada-proxy.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ada Rose Edwards",
   "license": "BSD",
   "dependencies": {
-    "http-proxy": "^1.1.5",
-    "forever": "~0.11.1",
-    "github-webhook-handler": "~0.2.1",
-    "es6-promise": "~1.0.0",
-    "gift": "~0.4.2",
-    "node-static": "~0.7.4"
+    "ada-proxy-core": "git://github.com/AdaRoseEdwards/ada-proxy-core"
   },
   "devDependencies": {},
   "repository": {
