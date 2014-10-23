@@ -1,27 +1,6 @@
 [{
-	"pattern": "http://a\\.ada\\.is",
-	"type": "redirect",
-	"target": "https://a.ada.is",
-	"comment": "This redirects http to https"
-}, {
-	"pattern": "https://a\\.ada\\.is",
-	"type": "proxy",
-	"target": "https://localhost:8444",
-	"https": true,
-	"comment": "This proxies https://a.ada.is to the local port",
-	"deploy": {
-		"watch": "https://github.com/AdaRoseEdwards/ft-ada",
-		"folder": "/home/ada/gitWorkingDir/ft-ada/",
-		"run": "forever restart 1",
-		"comment": "auto git up a directory, it needs to be restarted manually"
-	}
-}, {
-	"pattern": "http://sound\\.ada\\.is",
+	"pattern": "^https://(www\\.)?1am\\.club/~([a-bA-B\\-_])/",
 	"type": "static",
-	"target": "/home/ada/gitWorkingDir/SoundThing/",
-	"comment": "Folder for soundThing",
-	"deploy": {
-		"watch": "https://github.com/AdaRoseEdwards/SoundThing",
-		"folder": "/home/ada/gitWorkingDir/SoundThing/"
-	}
+	"target": "/home/{{2}}/public_html/",
+	"comment": "Users public_html dir"
 }]
