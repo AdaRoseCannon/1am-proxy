@@ -1,6 +1,8 @@
 [{
-	"pattern": "^https://(www\\.)?1am\\.club/~([a-bA-B\\-_])/",
+	"pattern": "^https://(www\\.)?1am\\.club/~([a-z]+)/(.*)",
 	"type": "static",
 	"target": "/home/{{2}}/public_html/",
-	"comment": "Users public_html dir"
+	"rewriteURL": "/{{3}}",
+	"comment": "Users public_html dir",
+	"https": true
 }]
