@@ -1,5 +1,5 @@
 [{
-	"pattern": "^https://(www\\.)?1am\\.club/~([a-z]+)(/.*)",
+	"pattern": "^https://(www\\.)?1am\\.club/~([a-z1-9]+)/?(.*)",
 	"type": "static",
 	"target": "/home/{{2}}/public_html/",
 	"rewriteURL": "/{{3}}",
