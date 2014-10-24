@@ -2,7 +2,6 @@
 
 var constants = require('constants');
 var fs = require('fs');
-var https = require('https');
 
 var options = {
 	port: 8080,
@@ -29,8 +28,6 @@ var options = {
 		]
 	},
 	githookURL: "^http:\/\/githooks", //If the url begins with http://githooks then it is a git hook
-	repoURL: "https://github.com/AdaRoseEdwards/1am-proxy",
-	repoRef: "refs/heads/master"
 };
 
 
@@ -50,7 +47,9 @@ var options = {
 })();
 
 var proxy = require('ada-proxy-core') (options, require('./jobs.json'));
-proxy.on('updatedSelf', function () {
-	console.log('Recieved an update signal exiting.');
-	process.exit();
+proxy.on('updated', function (item) {
+	if (item.type === "self-update") {
+		console.log('Recieved an update signal exiting.');
+		process.exit();
+	}
 });
