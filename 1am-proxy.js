@@ -7,6 +7,7 @@ var options = {
 	port: 8080,
 	https_port: 8443,
 	gitSecret: require('./secret'),
+	noAppcache: true,
 	ssl_options: {
 		// This is the default secureProtocol used by Node.js, but it might be
 		// sane to specify this by default as it's required if you want to
@@ -27,7 +28,7 @@ var options = {
 			fs.readFileSync("/home/ada/keys/sub.class1.server.ca.pem")
 		]
 	},
-	githookURL: "^http:\/\/githooks", //If the url begins with http://githooks then it is a git hook
+	githookURL: "^http:\/\/githooks\\.1am\\.club", //If the url begins with http://githooks then it is a git hook
 };
 
 
@@ -46,7 +47,7 @@ var options = {
 	options.port = parseInt(options.port);
 })();
 
-var proxy = require('ada-proxy-core') (options, require('./jobs.json'));
+var proxy = require('ada-proxy-core') (options, require('./jobs.js'));
 proxy.on('updated', function (item) {
 	if (item.type === "self-update") {
 		console.log('Recieved an update signal exiting.');
