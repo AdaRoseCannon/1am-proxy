@@ -1,12 +1,12 @@
 Code of Conduct
+===============
 
-Social
-======
+## Social
 
 Catch all: Don't be a gender non specific genitalia.
 
-Technical
-=========
+## Technical
+
 Once I have cobbled some money for a wildcard subdomain
 ssl cert this will no longer be an issue but for now:
 
