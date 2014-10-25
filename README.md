@@ -1,31 +1,20 @@
-ada-proxy
+Feel free to request features.
+
+1am-proxy
 =========
 
-The proxy settings for my ec2.
+ * This hosts static servers for each user.
+ * Hosts the main site
+ * Handles redirects
+ * Updates itself on git push
+ * It will host a peer.js signalling server on port 9000
 
-It handles redirects to from 80 to internal apps based on url.
+The ec2 server
+==============
 
-It also will self update and trigger updates based upon githooks.
+Located at 1am.club has ssh support on port 22. Useful commands:
 
-http requests can:
+* `mutt` & `mail`: Used to send and check mail.
+* `quota`: Check your disk usage
 
- * Trigger a command to be run. (Must be at the top of the config)
-
-And one of:
-
- * Be proxied to an internal address.
- * Point at a static folder.
- * Redirect to another url.
-
-https requests can:
-
- * Trigger a command to be run. (Must be at the top of the config)
-
-And one of:
- 
- * Be proxied to an internal address.
-
- TODO
- ====
-
- Implement automated self testing.
+Anything placed in public_html will be available at https://1am.club/~yourname/
