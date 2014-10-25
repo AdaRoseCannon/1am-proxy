@@ -9,7 +9,7 @@ This hosting community is dedicated to providing a harassment-free experience fo
 #### Technical
 
 Once we have cobbled some money for a wildcard subdomain
-ssl cert this will no longer be an issue but for now:
+ssl cert these will no longer be an issue but for now:
 
  * No Appcache
  * Service worker - Scope it to your folder e.g. /~ada/
