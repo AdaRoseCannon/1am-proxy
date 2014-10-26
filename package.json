@@ -9,12 +9,12 @@
   "author": "Ada Rose Edwards",
   "license": "BSD",
   "dependencies": {
-    "ada-proxy-core": "git://github.com/AdaRoseEdwards/ada-proxy-core"
+    "ada-proxy-core": "git+https://github.com/AdaRoseEdwards/ada-proxy-core.git#master"
   },
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/AdaRoseEdwards/1am-proxy.git"
+    "url": "http://github.com/AdaRoseEdwards/1am-proxy.git"
   },
   "keywords": [
     "Ada",
