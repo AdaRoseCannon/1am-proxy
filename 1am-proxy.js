@@ -54,3 +54,11 @@ proxy.on('updated', function (item) {
 		process.exit();
 	}
 });
+
+var PeerServer = require('peer').PeerServer;
+
+var server = new PeerServer({
+  port: 9000,
+  ssl: options.ssl_options,
+  path: '/'
+});
