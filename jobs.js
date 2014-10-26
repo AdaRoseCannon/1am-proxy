@@ -30,5 +30,6 @@ module.exports = [{
 },{
 	type: "return",
 	pattern: "^https://(.*)",
-	comment: "Update the app when a push is recieved to master"
+	comment: "Update the app when a push is recieved to master",
+	https: true
 }];
