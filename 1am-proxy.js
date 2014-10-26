@@ -2,6 +2,9 @@
 
 var constants = require('constants');
 var fs = require('fs');
+var PeerServer = require('peer').PeerServer;
+var express = require('express');
+var app = express();
 
 var options = {
 	port: 8080,
@@ -53,12 +56,14 @@ proxy.on('updated', function (item) {
 		console.log('Recieved an update signal exiting.');
 		process.exit();
 	}
-});
-
-var PeerServer = require('peer').PeerServer;
+}).on('return', app);
 
 var server = new PeerServer({
-  port: 9000,
-  ssl: options.ssl_options,
-  path: '/'
+	port: 9000,
+	ssl: options.ssl_options,
+	path: '/'
 });
+
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+})

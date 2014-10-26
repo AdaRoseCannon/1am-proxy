@@ -27,4 +27,8 @@ module.exports = [{
 		folder: __dirname
 	},
 	comment: "Update the app when a push is recieved to master"
+},{
+	type: "return",
+	pattern: "^https://(.*)",
+	comment: "Update the app when a push is recieved to master"
 }];
