@@ -6,9 +6,10 @@
 		<title>1am Club</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/main.css">
+		<link href='//fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
 		{{> header }}
-		<div>Body Content</div>
+		<div>{{{ body }}}</div>
 	</body>
 </html>
