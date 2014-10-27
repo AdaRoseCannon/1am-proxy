@@ -13,7 +13,7 @@ var cookieParser = require('cookie-parser');
  */
 
 var app = express();
-var templateFolder = path.normalize('./templates');
+var templateFolder = path.normalize(path.join(__dirname, './templates'));
 
 app.engine('ms', mustacheEngine);
 app.set('view engine', 'ms');
