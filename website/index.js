@@ -28,6 +28,9 @@ app.use(compression({
 app.get('/', function (req, res) {
 	res.render('page', {
 		title: "1am Club"
+	}, function(err, html){
+		console.log(html);
+		res.end(html);
 	});
 });
 
