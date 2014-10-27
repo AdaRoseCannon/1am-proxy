@@ -30,7 +30,6 @@ var staticFolder = path.normalize(path.join(__dirname, './static'));
 var codeOfConduct = marked(fs.readFileSync(path.join(__dirname, '../coc.md'), {encoding: 'utf8'})); 
 var readMe = marked(fs.readFileSync(path.join(__dirname, '../README.md'), {encoding: 'utf8'}));
 
-
 app.engine('ms', mustacheEngine);
 app.set('view engine', 'ms');
 app.set('views', templateFolder);
@@ -45,6 +44,16 @@ app.get('/', function (req, res) {
 	res.render('page', {
 		title: "1am Club",
 		body: readMe,
+		partials: {
+			header: 'header',
+		}
+	});
+});
+
+app.get('/coc/', function (req, res) {
+	res.render('page', {
+		title: "1am Club",
+		body: codeOfConduct,
 		partials: {
 			header: 'header',
 		}
