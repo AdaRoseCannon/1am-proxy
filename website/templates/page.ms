@@ -11,5 +11,6 @@
 	<body>
 		<div class="main_header">{{> header }}</div>
 		<div class="main_content">{{{ body }}}</div>
+		<div class="main_navigator">{{{> nav }}}</div>
 	</body>
 </html>

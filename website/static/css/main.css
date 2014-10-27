@@ -19,7 +19,6 @@ html, body {
 .main_content, .main_header {
 	padding: 2em 4em;
 	font-family: sans;
-	width: 100%;
 }
 
 .main_header {

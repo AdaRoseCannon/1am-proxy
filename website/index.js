@@ -27,8 +27,18 @@ marked.setOptions({
 var app = express();
 var templateFolder = path.normalize(path.join(__dirname, './templates'));
 var staticFolder = path.normalize(path.join(__dirname, './static')); 
-var codeOfConduct = marked(fs.readFileSync(path.join(__dirname, '../coc.md'), {encoding: 'utf8'})); 
-var readMe = marked(fs.readFileSync(path.join(__dirname, '../README.md'), {encoding: 'utf8'}));
+
+var markdown = {
+	codeOfConduct: marked(fs.readFileSync(path.join(__dirname, '../coc.md'), {encoding: 'utf8'})),
+	readMe: marked(fs.readFileSync(path.join(__dirname, '../README.md'), {encoding: 'utf8'})),
+	regInstructions: marked(fs.readFileSync(path.join(__dirname, '../registration_instructions.md'), {encoding: 'utf8'})),
+	tips: marked(fs.readFileSync(path.join(__dirname, '../tips.md'), {encoding: 'utf8'}))
+};
+
+var partials = {
+	header: 'header',
+	nav: 'nav'
+}
 
 app.engine('ms', mustacheEngine);
 app.set('view engine', 'ms');
@@ -43,20 +53,32 @@ app.use(compression({
 app.get('/', function (req, res) {
 	res.render('page', {
 		title: "1am Club",
-		body: readMe,
-		partials: {
-			header: 'header',
-		}
+		body: markdown.readMe,
+		partials: partials
 	});
 });
 
 app.get('/coc/', function (req, res) {
 	res.render('page', {
 		title: "1am Club",
-		body: codeOfConduct,
-		partials: {
-			header: 'header',
-		}
+		body: markdown.codeOfConduct,
+		partials: partials
+	});
+});
+
+app.get('/tips/', function (req, res) {
+	res.render('page', {
+		title: "1am Club",
+		body: markdown.tips,
+		partials: partials
+	});
+});
+
+app.get('/registration/', function (req, res) {
+	res.render('page', {
+		title: "1am Club",
+		body: markdown.regInstructions,
+		partials: partials
 	});
 });
 
