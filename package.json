@@ -10,9 +10,7 @@
   "license": "BSD",
   "dependencies": {
     "ada-proxy-core": "git+https://github.com/AdaRoseEdwards/ada-proxy-core.git#master",
-    "body-parser": "^1.9.1",
     "compression": "^1.2.0",
-    "cookie-parser": "^1.3.3",
     "express": "~4.10.0",
     "hogan-express": "^0.5.2",
     "marked": "^0.3.2",

@@ -5,9 +5,7 @@ var fs = require('fs');
 
 // Express Middleware
 var compression = require('compression');
-var bodyParser = require('body-parser');
 var mustacheEngine = require('hogan-express');
-var cookieParser = require('cookie-parser');
 var marked = require('marked');
 
 /**
@@ -38,7 +36,7 @@ var markdown = {
 var partials = {
 	header: 'header',
 	nav: 'nav'
-}
+};
 
 app.engine('ms', mustacheEngine);
 app.set('view engine', 'ms');
@@ -83,9 +81,5 @@ app.get('/registration/', function (req, res) {
 });
 
 app.use(express.static(staticFolder));
-
-// Allow reading request body downstream
-app.use(bodyParser.json());
-app.use(cookieParser());
 
 module.exports = app;
