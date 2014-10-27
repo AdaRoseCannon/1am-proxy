@@ -80,6 +80,8 @@ app.get('/reg/', function (req, res) {
 	});
 });
 
+app.use(express.static(staticFolder));
+
 app.get('*', function (req, res) {
 	res.render('page', {
 		title: "1am Club - 404!!",
@@ -87,7 +89,5 @@ app.get('*', function (req, res) {
 		partials: partials
 	});
 });
-
-app.use(express.static(staticFolder));
 
 module.exports = app;
