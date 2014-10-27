@@ -14,6 +14,7 @@ var cookieParser = require('cookie-parser');
 
 var app = express();
 var templateFolder = path.normalize(path.join(__dirname, './templates'));
+var staticFolder = path.normalize(path.join(__dirname, './static')); 
 
 app.engine('ms', mustacheEngine);
 app.set('view engine', 'ms');
@@ -27,9 +28,14 @@ app.use(compression({
 
 app.get('/', function (req, res) {
 	res.render('page', {
-		title: "1am Club"
+		title: "1am Club",
+		partials: {
+			header: 'header'
+		}
 	});
 });
+
+app.use(express.static(staticFolder));
 
 // Allow reading request body downstream
 app.use(bodyParser.json());
