@@ -20,6 +20,11 @@ app.set('view engine', 'ms');
 app.set('views', templateFolder);
 app.enable('view cache');
 
+// Use compression
+app.use(compression({
+  threshold: 512
+}));
+
 app.get('/', function (req, res) {
 	res.render('page', {
 		title: "1am Club"
@@ -29,10 +34,5 @@ app.get('/', function (req, res) {
 // Allow reading request body downstream
 app.use(bodyParser.json());
 app.use(cookieParser());
-
-// Use compression
-app.use(compression({
-  threshold: 512
-}));
 
 module.exports = app;
