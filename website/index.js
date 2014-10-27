@@ -72,10 +72,18 @@ app.get('/tips/', function (req, res) {
 	});
 });
 
-app.get('/registration/', function (req, res) {
+app.get('/reg/', function (req, res) {
 	res.render('page', {
 		title: "1am Club",
 		body: markdown.regInstructions,
+		partials: partials
+	});
+});
+
+app.get('*', function (req, res) {
+	res.render('page', {
+		title: "1am Club - 404!!",
+		body: '<h1 class="404">404!!!</h1>',
 		partials: partials
 	});
 });
