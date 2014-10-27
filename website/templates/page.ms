@@ -9,7 +9,7 @@
 		<link href='//fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-		{{> header }}
-		<div>{{{ body }}}</div>
+		<div class="main_header">{{> header }}</div>
+		<div class="main_content">{{{ body }}}</div>
 	</body>
 </html>
