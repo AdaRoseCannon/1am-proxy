@@ -28,8 +28,9 @@ module.exports = [{
 	},
 	comment: "Update the app when a push is recieved to master"
 },{
-	type: "return",
+	type: "proxy",
 	pattern: "^https://(.*)",
-	comment: "Update the app when a push is recieved to master",
+	target: "https://localhost:8444",
+	comment: "Proxy all remaining requests to the website",
 	https: true
 }];
