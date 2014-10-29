@@ -32,5 +32,11 @@ module.exports = [{
 	pattern: "^https://(.*)",
 	target: "https://localhost:8444",
 	comment: "Proxy all remaining requests to the website",
-	https: true
+	https: true,
+	deploy: {
+		watch: "https://github.com/AdaRoseEdwards/1am-main",
+		ref: "refs/heads/master",
+		run: "npm install",
+		folder: "/home/ada/gitWorkingDir/1am-main/"
+	}
 }];
