@@ -10,7 +10,7 @@ var options = {
 	gitSecret: require('./secret'),
 	noAppcache: true,
 	ssl_options: require('/home/ada/keys/keys_config.js'),
-	githookURL: "^http:\/\/githooks\\.1am\\.club", //If the url begins with http://githooks then it is a git hook
+	githookURL: "^https:\/\/githooks\\.1am\\.club", //If the url begins with http://githooks then it is a git hook
 };
 
 
