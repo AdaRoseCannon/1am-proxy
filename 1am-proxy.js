@@ -3,6 +3,7 @@
 var constants = require('constants');
 var fs = require('fs');
 var PeerServer = require('peer').PeerServer;
+var traceur = require('traceur');
 
 var options = {
 	port: 8080,
@@ -39,6 +40,9 @@ proxy.on('updated', function (item) {
 		console.log('Recieved an update signal exiting.');
 		process.exit();
 	}
+}).on('return', function (req, res, item) {
+	console.log(item);
+	res.end('boo');
 });
 
 new PeerServer({

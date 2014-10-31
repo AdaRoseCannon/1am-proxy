@@ -28,8 +28,16 @@ module.exports = [{
 	},
 	comment: "Update the app when a push is recieved to master"
 },{
+	type: "return",
+	pattern: "^https://(www\\.)?1am\\.club/t/~([a-z1-9]+)/(.*\\.js)",
+	target: "/home/{{2}}/public_html/",
+	rewriteURL: "/{{3}}",
+	https: true,
+	transpile: true,
+	comment: "Transpiling custom endpoint"
+},{
 	type: "proxy",
-	pattern: "^https://(.*)",
+	pattern: "^https://(www\\.)?1am\\.club/",
 	target: "https://localhost:8444",
 	comment: "Proxy all remaining requests to the website",
 	https: true,
