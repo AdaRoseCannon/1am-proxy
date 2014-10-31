@@ -7,10 +7,14 @@ var PeerServer = require('peer').PeerServer;
 var options = {
 	port: 8080,
 	https_port: 8443,
-	gitSecret: require('./secret'),
 	noAppcache: true,
+	spdy: true,
 	ssl_options: require('/home/ada/keys/keys_config.js'),
-	githookURL: "^https:\/\/githooks\\.1am\\.club", //If the url begins with http://githooks then it is a git hook
+	gitHooks: {
+		url: "^https:\/\/1am\\.club/gh/$", //If the url begins with http://githooks then it is a git hook,
+		secret: require('./secret'),
+		path: "/gh/"
+	}
 };
 
 
