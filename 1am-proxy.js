@@ -46,12 +46,16 @@ proxy.on('updated', function (item) {
 }).on('return', function (req, res, item) {
 	if (item.transpile) {
 		var filePath = path.normalize(path.join(item.target, item.url));
-		compile(filePath)
+		return compile(filePath)
 		.then(function (result) {
 			res.end(result);
 		}).catch(function (err) {
-			res.setHeader(500);
-			res.end(err);
+			console.log('Transpiling Err', err);
+			res.writeHead(500, {
+				'Content-Type': 'text/plain'
+			});
+			res.write(err.message);
+			res.end();
 		});
 	}
 	console.log(item);
