@@ -3,7 +3,8 @@
 var constants = require('constants');
 var fs = require('fs');
 var PeerServer = require('peer').PeerServer;
-var traceur = require('traceur');
+var Traceur = require('traceur').NodeCompiler;
+var path = require('path');
 
 var options = {
 	port: 8080,
@@ -34,6 +35,11 @@ var options = {
 	options.port = parseInt(options.port);
 })();
 
+var compiler = new Traceur({
+	sourceMaps: true,
+	modules: 'commonjs'
+});
+
 var proxy = require('ada-proxy-core') (options, require('./jobs.js'));
 proxy.on('updated', function (item) {
 	if (item.type === "self-update") {
@@ -41,8 +47,12 @@ proxy.on('updated', function (item) {
 		process.exit();
 	}
 }).on('return', function (req, res, item) {
+	if (item.transpile) {
+		var filePath = path.normalize(path.join(item.target, item.url));		
+		
+	}
 	console.log(item);
-	res.end('boo');
+	res.end(item);
 });
 
 new PeerServer({
