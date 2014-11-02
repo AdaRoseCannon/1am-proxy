@@ -1,10 +1,9 @@
 'use strict';
 
-var constants = require('constants');
-var fs = require('fs');
 var PeerServer = require('peer').PeerServer;
-var Traceur = require('traceur').NodeCompiler;
 var path = require('path');
+var compile = require('./lib/compiler');
+require('es6-promise').polyfill();
 
 var options = {
 	port: 8080,
@@ -35,11 +34,6 @@ var options = {
 	options.port = parseInt(options.port);
 })();
 
-var compiler = new Traceur({
-	sourceMaps: true,
-	modules: 'commonjs'
-});
-
 var proxy = require('ada-proxy-core') (options, require('./jobs.js'));
 proxy.on('updated', function (item) {
 	if (item.type === "self-update") {
@@ -48,8 +42,14 @@ proxy.on('updated', function (item) {
 	}
 }).on('return', function (req, res, item) {
 	if (item.transpile) {
-		var filePath = path.normalize(path.join(item.target, item.url));		
-		
+		var filePath = path.normalize(path.join(item.target, item.url));
+		compile(filePath)
+		.then(function (result) {
+			res.end(result);
+		}).catch(function (err) {
+			res.setHeader(500);
+			res.end(err);
+		});
 	}
 	console.log(item);
 	res.end(item);
