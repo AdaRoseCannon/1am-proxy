@@ -10,8 +10,11 @@
   "license": "BSD",
   "dependencies": {
     "ada-proxy-core": "git+https://github.com/AdaRoseEdwards/ada-proxy-core.git#master",
+    "browserify": "^6.2.0",
+    "denodeify": "^1.1.2",
+    "es6ify": "^1.5.1",
     "peer": "^0.2.7",
-    "traceur": "0.0.72"
+    "uniq": "^1.0.1"
   },
   "devDependencies": {},
   "repository": {

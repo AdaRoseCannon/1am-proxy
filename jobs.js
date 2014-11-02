@@ -14,9 +14,9 @@ module.exports = [{
 	https: true,
 	comment: "Redirect ~ada to ~ada/"
 },{
-	pattern: "^http://(.*)",
+	pattern: "^http://(www\\.)?1am\\.club/(.*)",
 	type: "redirect",
-	target: "https://{{1}}",
+	target: "https://{{1}}1am.club/{{2}}",
 	comment: "Redirect http to https"
 },{
 	type: "self-update",

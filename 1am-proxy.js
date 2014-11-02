@@ -1,9 +1,9 @@
 'use strict';
 
-var constants = require('constants');
-var fs = require('fs');
 var PeerServer = require('peer').PeerServer;
-var traceur = require('traceur');
+var path = require('path');
+var compile = require('./lib/compiler');
+require('es6-promise').polyfill();
 
 var options = {
 	port: 8080,
@@ -41,8 +41,18 @@ proxy.on('updated', function (item) {
 		process.exit();
 	}
 }).on('return', function (req, res, item) {
+	if (item.transpile) {
+		var filePath = path.normalize(path.join(item.target, item.url));
+		compile(filePath)
+		.then(function (result) {
+			res.end(result);
+		}).catch(function (err) {
+			res.setHeader(500);
+			res.end(err);
+		});
+	}
 	console.log(item);
-	res.end('boo');
+	res.end(item);
 });
 
 new PeerServer({
