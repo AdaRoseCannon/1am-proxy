@@ -1,5 +1,8 @@
 'use strict';
 
+var keys = require('/home/ada/keys/keys_config.js');
+process.setuid(1002);
+
 var PeerServer = require('peer').PeerServer;
 var path = require('path');
 var compile = require('./lib/compiler');
@@ -10,7 +13,7 @@ var options = {
 	https_port: 8443,
 	noAppcache: true,
 	spdy: true,
-	ssl_options: require('/home/ada/keys/keys_config.js'),
+	ssl_options: keys,
 	gitHooks: {
 		url: "^https:\/\/1am\\.club/gh/$", //If the url begins with http://githooks then it is a git hook,
 		secret: require('./secret'),
