@@ -1,7 +1,7 @@
 'use strict';
 
 var keys = require('/home/ada/keys/keys_config.js');
-process.setuid(1002);
+process.setuid(1001);
 
 var PeerServer = require('peer').PeerServer;
 var path = require('path');
