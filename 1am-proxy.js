@@ -62,8 +62,8 @@ proxy.on('updated', function (item) {
 	res.end(item);
 });
 
-new PeerServer({
+var ps = new PeerServer({
 	port: 9000,
-	ssl: options.ssl_options,
+	ssl: keys,
 	path: '/'
 });
