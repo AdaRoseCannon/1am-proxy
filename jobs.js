@@ -42,7 +42,7 @@ module.exports = [{
 	comment: "Transpiling custom endpoint"
 },{
 	type: "proxy",
-	pattern: httpsBP + "",
+	pattern: httpsBP,
 	target: "https://localhost:8444",
 	comment: "Proxy all remaining requests to the website",
 	https: true,
