@@ -1,22 +1,27 @@
 'use strict';
 
+var basePattern = "//(www\\.)?1am\\.club(:\\d+)?/";
+var httpsBP = "^https:" + basePattern;
+var httpBP = "^http:" + basePattern;
+
+
 module.exports = [{
-	pattern: "^https://(www\\.)?1am\\.club/~([a-z1-9]+)/(.*)",
+	pattern: httpsBP + "~([a-z1-9]+)/(.*)",
 	type: "static",
-	target: "/home/{{2}}/public_html/",
-	rewriteURL: "/{{3}}",
+	target: "/home/{{3}}/public_html/",
+	rewriteURL: "/{{4}}",
 	https: true,
 	comment: "Users public_html dir"
 },{
-	pattern: "^https://(www\\.)?1am\\.club/~([a-z1-9]+)$",
+	pattern: httpsBP + "~([a-z1-9]+)$",
 	type: "redirect",
-	target: "https://{{1}}1am.club/~{{2}}/",
+	target: "https://{{1}}1am.club{{2}}/~{{3}}/",
 	https: true,
 	comment: "Redirect ~ada to ~ada/"
 },{
-	pattern: "^http://(www\\.)?1am\\.club/(.*)",
+	pattern: httpBP + "(.*)",
 	type: "redirect",
-	target: "https://{{1}}1am.club/{{2}}",
+	target: "https://{{1}}1am.club{{2}}/{{3}}",
 	comment: "Redirect http to https"
 },{
 	type: "self-update",
@@ -29,15 +34,15 @@ module.exports = [{
 	comment: "Update the app when a push is recieved to master"
 },{
 	type: "return",
-	pattern: "^https://(www\\.)?1am\\.club/t/~([a-z1-9]+)/(.*\\.js)",
-	target: "/home/{{2}}/public_html/",
-	rewriteURL: "/{{3}}",
+	pattern: httpsBP + "t/~([a-z1-9]+)/(.*\\.js)",
+	target: "/home/{{3}}/public_html/",
+	rewriteURL: "/{{4}}",
 	https: true,
 	transpile: true,
 	comment: "Transpiling custom endpoint"
 },{
 	type: "proxy",
-	pattern: "^https://(www\\.)?1am\\.club/",
+	pattern: httpsBP,
 	target: "https://localhost:8444",
 	comment: "Proxy all remaining requests to the website",
 	https: true,
