@@ -1,6 +1,21 @@
 'use strict';
 
-var keys = require('/root/1am-keys/keys_config.js');
+var crypto = require('crypto');
+var extend = require('util')._extend;
+
+var keys = {
+	'1am.club': require('/root/1am-keys/keys_config.js'),
+	'ada.is': require('/root/ada-keys/keys_config.js')
+};
+
+var secureContext = {};
+
+for (var key in keys) {
+	if (keys.hasOwnProperty(key)) {
+		secureContext[key] = crypto.createCredentials(keys[key]).context;
+	}
+}
+
 process.setuid(1001);
 
 var PeerServer = require('peer').PeerServer;
@@ -13,7 +28,12 @@ var options = {
 	https_port: 8443,
 	noAppcache: true,
 	spdy: true,
-	ssl_options: keys,
+	ssl_options: extend({
+		SNICallback: function (domain) {
+			var newDomain = domain.split('.').slice(-2).join('.');
+			return secureContext[newDomain];
+		}
+	}, keys['1am.club']),
 	gitHooks: {
 		url: "^https:\/\/1am\\.club/gh/$", //If the url begins with http://githooks then it is a git hook,
 		secret: require('./secret'),
