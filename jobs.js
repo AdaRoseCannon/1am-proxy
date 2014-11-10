@@ -6,10 +6,9 @@ var httpBP = "^http:" + basePattern;
 
 
 module.exports = [{
-	pattern: "^https://ada\\.is/(.*)",
+	pattern: "^https://ada\\.is/",
 	type: "static",
-	target: "/home/~ada/public_html/",
-	rewriteURL: "/{{1}}",
+	target: "/home/ada/public_html/",
 	https: true,
 	comment: "Point ada.is to my local public_html"
 },{
