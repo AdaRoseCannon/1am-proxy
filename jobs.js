@@ -15,7 +15,7 @@ module.exports = [{
 },{
 	pattern: "^http://ada\\.is/(.*)",
 	type: "redirect",
-	target: "https://ada\\.is/{{1}}",
+	target: "https://ada.is/{{1}}",
 	comment: "Redirect http to https"
 },{
 	pattern: httpsBP + "~([a-z1-9]+)/(.*)",
