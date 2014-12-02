@@ -8,7 +8,7 @@ var httpBP = "^http:" + basePattern;
 module.exports = [{
 	pattern: "^https://ada\\.is/",
 	type: "static",
-	target: "/home/ada/public_html/",
+	target: "/home/ada/ada.is",
 	https: true,
 	comment: "Point ada.is to my local public_html"
 },{
@@ -60,7 +60,7 @@ module.exports = [{
 	deploy: {
 		watch: "https://github.com/AdaRoseEdwards/1am-main",
 		ref: "refs/heads/master",
-		run: "npm install",
+		run: "npm install; pkill -f 1am-main",
 		folder: "/home/ada/gitWorkingDir/1am-main/"
 	}
 }];
