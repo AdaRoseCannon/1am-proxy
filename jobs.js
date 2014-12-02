@@ -40,7 +40,10 @@ module.exports = [{
 		watch: "https://github.com/AdaRoseEdwards/1am-proxy",
 		ref: "refs/heads/master",
 		run: "npm install",
-		folder: __dirname
+		folder: (function (d) {
+			console.log('Watching folder for updates:', d);
+			return d + '/';
+		})(__dirname);
 	},
 	comment: "Update the app when a push is recieved to master"
 },{
