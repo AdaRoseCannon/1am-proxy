@@ -43,7 +43,7 @@ module.exports = [{
 		folder: (function (d) {
 			console.log('Watching folder for updates:', d);
 			return d + '/';
-		})(__dirname);
+		})(__dirname)
 	},
 	comment: "Update the app when a push is recieved to master"
 },{
