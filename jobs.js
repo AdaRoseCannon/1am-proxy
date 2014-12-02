@@ -41,7 +41,7 @@ module.exports = [{
 		ref: "refs/heads/master",
 		run: "npm install",
 		folder: (function (d) {
-			console.log('Watching folder for updates:', d);
+			console.log('Watching "' + d + '" for updates');
 			return d + '/';
 		})(__dirname)
 	},
