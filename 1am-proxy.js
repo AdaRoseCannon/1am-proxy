@@ -16,7 +16,7 @@ for (var key in keys) {
 	}
 }
 
-process.setuid(1001);
+process.setuid(1006);
 
 var PeerServer = require('peer').PeerServer;
 var path = require('path');
