@@ -16,6 +16,13 @@ for (var key in keys) {
 	}
 }
 
+keys = extend({
+	SNICallback: function (domain) {
+		var newDomain = domain.split('.').slice(-2).join('.');
+		return secureContext[newDomain];
+	}
+}, keys['1am.club']);
+
 process.setuid(1006);
 
 var PeerServer = require('peer').PeerServer;
@@ -28,12 +35,7 @@ var options = {
 	https_port: 8443,
 	noAppcache: true,
 	spdy: true,
-	ssl_options: extend({
-		SNICallback: function (domain) {
-			var newDomain = domain.split('.').slice(-2).join('.');
-			return secureContext[newDomain];
-		}
-	}, keys['1am.club']),
+	ssl_options: keys,
 	gitHooks: {
 		url: "^https:\/\/1am\\.club/gh/$", //If the url begins with http://githooks then it is a git hook,
 		secret: require('./secret'),
