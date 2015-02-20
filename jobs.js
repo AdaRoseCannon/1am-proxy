@@ -6,11 +6,22 @@ var httpBP = "^http:" + basePattern;
 
 
 module.exports = [{
+	pattern: "^http://(www\\.)?mqc\\.ink/",
+	type: "static",
+	target: "/home/margauxqc/mqc.ink",
+	comment: "Point mqc.ink to her dist folder"
+},{
+	pattern: "^https://(www\\.)?mqc\\.ink/",
+	type: "static",
+	target: "/home/margauxqc/mqc.ink",
+	https: true,
+	comment: "Point mqc.ink to her dist folder"
+},{
 	pattern: "^https://ada\\.is/",
 	type: "static",
 	target: "/home/ada/ada.is",
 	https: true,
-	comment: "Point ada.is to my local public_html"
+	comment: "Point ada.is to my ada.is folder"
 },{
 	pattern: "^http://ada\\.is/(.*)",
 	type: "redirect",
