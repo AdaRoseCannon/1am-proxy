@@ -27,7 +27,7 @@ process.setuid(1006);
 
 var PeerServer = require('peer').PeerServer;
 var path = require('path');
-var compile = require('./lib/compiler');
+var transpile = require('./lib/compiler');
 require('es6-promise').polyfill();
 
 var options = {
@@ -68,24 +68,18 @@ proxy.on('updated', function (item) {
 }).on('return', function (req, res, item) {
 	if (item.transpile) {
 		var filePath = path.normalize(path.join(item.target, item.url));
-		return compile(filePath)
-		.then(function (result) {
-			res.end(result);
-		}).catch(function (err) {
-			console.log('Transpiling Err', err);
-			res.writeHead(500, {
-				'Content-Type': 'text/plain'
-			});
-			res.write(err.message);
-			res.end();
-		});
+		transpile(filePath, res);
+	} else {
+		console.log(item);
+		res.end(item);
 	}
-	console.log(item);
-	res.end(item);
 });
 
-var ps = new PeerServer({
+new PeerServer({
 	port: 9000,
 	ssl: keys,
-	path: '/'
+	path: '/',
+	proxied: true
 });
+
+

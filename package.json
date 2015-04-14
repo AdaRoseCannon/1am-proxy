@@ -4,7 +4,7 @@
   "description": "Proxy settings for my server",
   "main": "1am-proxy.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./test"
   },
   "author": "Ada Rose Edwards",
   "license": "BSD",
@@ -13,11 +13,15 @@
     "browserify": "^6.2.0",
     "denodeify": "^1.1.2",
     "es6-promise": "^2.0.0",
-    "es6ify": "^1.5.1",
-    "peer": "^0.2.7",
-    "uniq": "^1.0.1"
+    "peer": "^0.2.0",
+    "uniq": "^1.0.1",
+    "traceur": "0.0.88",
+    "es6ify": "~1.6.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "express": "~4.10.6",
+    "supertest": "~0.15.0"
+  },
   "repository": {
     "type": "git",
     "url": "http://github.com/AdaRoseEdwards/1am-proxy.git"
