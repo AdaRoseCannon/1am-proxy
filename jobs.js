@@ -37,13 +37,13 @@ module.exports = [{
 },{
 	pattern: httpsBP + "~([a-z1-9]+)$",
 	type: "redirect",
-	target: "https://{{1}}1am.club{{2}}/~{{3}}/",
+	target: "https://www.1am.club{{2}}/~{{3}}/",
 	https: true,
 	comment: "Redirect ~ada to ~ada/"
 },{
 	pattern: httpBP + "(.*)",
 	type: "redirect",
-	target: "https://{{1}}1am.club{{2}}/{{3}}",
+	target: "https://www.1am.club{{2}}/{{3}}",
 	comment: "Redirect http to https"
 },{
 	type: "self-update",
