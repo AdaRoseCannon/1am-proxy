@@ -1,12 +1,16 @@
 'use strict';
 
-var crypto = require('crypto');
-var extend = require('util')._extend;
-
 var keys = {
 	'1am.club': require('/root/1am-keys/keys_config.js'),
 	'ada.is': require('/root/ada-keys/keys_config.js')
 };
+
+// Dump root permissions and switch to www before anything else is read
+// minimize dangerous area.
+process.setuid(1006);
+
+var crypto = require('crypto');
+var extend = require('util')._extend;
 
 var secureContext = {};
 
@@ -22,8 +26,6 @@ keys = extend({
 		return secureContext[newDomain];
 	}
 }, keys['1am.club']);
-
-process.setuid(1006);
 
 var PeerServer = require('peer').PeerServer;
 var path = require('path');

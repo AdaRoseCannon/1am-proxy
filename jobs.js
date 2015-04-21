@@ -1,21 +1,20 @@
 'use strict';
 
-var basePattern = "//(www\\.)?1am\\.club(:\\d+)?/";
+var basePattern = "//(www\\.)?1am\\.club?/";
+var wwwBasePattern = "//www\\.1am\\.club?/";
+var httpsWwwBP = "^https:" + wwwBasePattern;
 var httpsBP = "^https:" + basePattern;
-var httpBP = "^http:" + basePattern;
-
 
 module.exports = [{
-	pattern: "^http://(www\\.)?mqc\\.ink/",
-	type: "static",
-	target: "/home/margauxqc/mqc.ink",
-	comment: "Point mqc.ink to her dist folder"
-},{
-	pattern: "^https://(www\\.)?mqc\\.ink/",
-	type: "static",
-	target: "/home/margauxqc/mqc.ink",
-	https: true,
-	comment: "Point mqc.ink to her dist folder"
+	pattern: "^http:",
+	type: "middleware",
+	middleware: function (req, res) {
+  		res.statusCode = 301;
+		res.setHeader('Location', 'https://' + req.headers.host.split(':')[0] + req.url);
+		res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+		res.end();
+	},
+	comment: "HSTS Everything!!"
 },{
 	pattern: "^https://ada\\.is/",
 	type: "static",
@@ -23,34 +22,24 @@ module.exports = [{
 	https: true,
 	comment: "Point ada.is to my ada.is folder"
 },{
-	pattern: "^http://ada\\.is/(.*)",
-	type: "redirect",
-	target: "https://ada.is/{{1}}",
-	comment: "Redirect http to https"
-},{
-	pattern: httpsBP + "~([a-z1-9]+)/(.*)",
+	pattern: httpsBP + "~([a-z1-9]+)/?(.*)",
 	type: "static",
-	target: "/home/{{3}}/public_html/",
-	rewriteURL: "/{{4}}",
+	target: "https://www.1am.club/{{2}}/{{3}}",
+	https: true,
+	comment: "Add www to users uri so that it runs through cloudflare"
+},{
+	pattern: httpsWwwBP + "~([a-z1-9]+)/(.*)",
+	type: "static",
+	target: "/home/{{1}}/public_html/",
+	rewriteURL: "/{{2}}",
 	https: true,
 	comment: "Users public_html dir"
-},{
-	pattern: httpsBP + "~([a-z1-9]+)$",
-	type: "redirect",
-	target: "https://www.1am.club{{2}}/~{{3}}/",
-	https: true,
-	comment: "Redirect ~ada to ~ada/"
-},{
-	pattern: httpBP + "(.*)",
-	type: "redirect",
-	target: "https://www.1am.club{{2}}/{{3}}",
-	comment: "Redirect http to https"
 },{
 	type: "self-update",
 	deploy: {
 		watch: "https://github.com/AdaRoseEdwards/1am-proxy",
 		ref: "refs/heads/master",
-		run: "npm install",
+		run: "npm install; pkill -f 1am-proxy",
 		folder: (function (d) {
 			console.log('Watching "' + d + '" for updates');
 			return d + '/';
