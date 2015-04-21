@@ -22,9 +22,9 @@ module.exports = [{
 	https: true,
 	comment: "Point ada.is to my ada.is folder"
 },{
-	pattern: httpsBP + "~([a-z1-9]+)/?(.*)",
-	type: "static",
-	target: "https://www.1am.club/{{2}}/{{3}}",
+	pattern: "^https://1am\\.club?/~([a-z1-9]+)/?(.*)",
+	type: "redirect",
+	target: "https://www.1am.club/~{{2}}/{{3}}",
 	https: true,
 	comment: "Add www to users uri so that it runs through cloudflare"
 },{
