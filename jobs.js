@@ -22,13 +22,13 @@ module.exports = [{
 	https: true,
 	comment: "Point ada.is to my ada.is folder"
 },{
-	pattern: "^https://1am\\.club?/~([a-z1-9]+)/?(.*)",
+	pattern: "^https://1am\\.club(.*)",
 	type: "redirect",
-	target: "https://www.1am.club/~{{2}}/{{3}}",
+	target: "https://www.1am.club{{1}}",
 	https: true,
-	comment: "Add www to users uri so that it runs through cloudflare"
+	comment: "Redirect through www so that it runs through cloudflare"
 },{
-	pattern: httpsWwwBP + "~([a-z1-9]+)/(.*)",
+	pattern: "^https://www\\.1am\\.club/~([a-z1-9]+)/(.*)",
 	type: "static",
 	target: "/home/{{1}}/public_html/",
 	rewriteURL: "/{{2}}",
@@ -48,15 +48,15 @@ module.exports = [{
 	comment: "Update the app when a push is recieved to master"
 },{
 	type: "return",
-	pattern: httpsBP + "t/~([a-z1-9]+)/(.*\\.js)",
-	target: "/home/{{3}}/public_html/",
-	rewriteURL: "/{{4}}",
+	pattern: "^https://www\\.1am\\.club/t/~([a-z1-9]+)/(.*\\.js)$",
+	target: "/home/{{1}}/public_html/",
+	rewriteURL: "/{{2}}",
 	https: true,
 	transpile: true,
 	comment: "Transpiling custom endpoint"
 },{
 	type: "proxy",
-	pattern: httpsBP,
+	pattern: "^https:",
 	target: "https://localhost:8444",
 	comment: "Proxy all remaining requests to the website",
 	https: true,
