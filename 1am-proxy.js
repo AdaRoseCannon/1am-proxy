@@ -39,7 +39,7 @@ var options = {
 	spdy: true,
 	ssl_options: keys,
 	gitHooks: {
-		url: "^https:\/\/1am\\.club/gh/$", //If the url begins with http://githooks then it is a git hook,
+		url: "^https:\/\/1am\\.club/gh/", //If the url begins with http://githooks then it is a git hook,
 		secret: require('./secret'),
 		path: "/gh/"
 	}
