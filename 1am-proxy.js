@@ -9,14 +9,14 @@ var keys = {
 // minimize dangerous area.
 process.setuid(1006);
 
-var crypto = require('crypto');
+var tls = require('tls');
 var extend = require('util')._extend;
 
 var secureContext = {};
 
 for (var key in keys) {
 	if (keys.hasOwnProperty(key)) {
-		secureContext[key] = crypto.createCredentials(keys[key]).context;
+		secureContext[key] = tls.createSecureContext(keys[key]);
 	}
 }
 
