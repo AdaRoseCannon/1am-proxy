@@ -16,7 +16,11 @@ var secureContext = {};
 
 for (var key in keys) {
 	if (keys.hasOwnProperty(key)) {
-		secureContext[key] = tls.createSecureContext(keys[key]).context;
+		if (tls.createSecureContext) {
+			secureContext[key] = tls.createSecureContext(keys[key]).context;
+		} else {
+			secureContext[key] = require('crypto').createCredentials(keys[key]).context;
+		}
 	}
 }
 
