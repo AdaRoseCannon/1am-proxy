@@ -21,9 +21,13 @@ for (var key in keys) {
 }
 
 keys = extend({
-	SNICallback: function (domain) {
+	SNICallback: function (domain, cb) {
 		var newDomain = domain.split('.').slice(-2).join('.');
-		return secureContext[newDomain];
+		if ('function' === typeof cb) {
+			cb(secureContext[newDomain]);
+		} else {
+			return secureContext[newDomain];
+		}
 	}
 }, keys['1am.club']);
 
