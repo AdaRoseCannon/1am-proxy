@@ -16,7 +16,7 @@ var secureContext = {};
 
 for (var key in keys) {
 	if (keys.hasOwnProperty(key)) {
-		secureContext[key] = tls.createSecureContext(keys[key]);
+		secureContext[key] = tls.createSecureContext(keys[key]).context;
 	}
 }
 
