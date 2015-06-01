@@ -22,7 +22,7 @@ for (var key in keys) {
 
 keys = extend({
 	SNICallback: function (domain, cb) {
-		var newDomain = domain.split('.').slice(-2).join('.');
+		var newDomain = domain.toLowerCase().split('.').slice(-2).join('.');
 		if ('function' === typeof cb) {
 			cb(secureContext[newDomain]);
 		} else {
