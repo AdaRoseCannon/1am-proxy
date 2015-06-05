@@ -48,7 +48,7 @@ var options = {
 	http2: true,
 	ssl_options: sslOpts,
 	gitHooks: {
-		url: "^https:\/\/1am\\.club/gh/", //If the url begins with http://githooks then it is a git hook,
+		url: "^https:\/\/1am\\.club/gh/", // Path for githooks
 		secret: require('./secret'),
 		path: "/gh/"
 	}
