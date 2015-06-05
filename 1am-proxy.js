@@ -2,7 +2,8 @@
 
 var keys = {
 	'1am.club': require('/root/1am-keys/keys_config.js'),
-	'ada.is': require('/root/ada-keys/keys_config.js')
+	'ada.is': require('/root/ada-keys/keys_config.js'),
+	'localhost': require('/root/localhost-keys/keys_config.js')
 };
 
 // Dump root permissions and switch to www before anything else is read
@@ -24,7 +25,7 @@ for (var key in keys) {
 	}
 }
 
-keys = extend({
+var sslOpts = extend({
 	SNICallback: function (domain, cb) {
 		var newDomain = domain.toLowerCase().split('.').slice(-2).join('.');
 		if ('function' === typeof cb) {
@@ -45,7 +46,7 @@ var options = {
 	https_port: 8443,
 	noAppcache: true,
 	http2: true,
-	ssl_options: keys,
+	ssl_options: sslOpts,
 	gitHooks: {
 		url: "^https:\/\/1am\\.club/gh/", //If the url begins with http://githooks then it is a git hook,
 		secret: require('./secret'),
