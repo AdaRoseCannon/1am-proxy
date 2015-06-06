@@ -29,7 +29,7 @@ var sslOpts = extend({
 	SNICallback: function (domain, cb) {
 		var newDomain = domain.toLowerCase().split('.').slice(-2).join('.');
 		if ('function' === typeof cb) {
-			cb(secureContext[newDomain]);
+			cb(null, secureContext[newDomain]);
 		} else {
 			return secureContext[newDomain];
 		}
