@@ -1,12 +1,7 @@
 'use strict';
 
-var basePattern = "//(www\\.)?1am\\.club?/";
-var wwwBasePattern = "//www\\.1am\\.club?/";
-var httpsWwwBP = "^https:" + wwwBasePattern;
-var httpsBP = "^https:" + basePattern;
-
 module.exports = [{
-	pattern: "^http:",
+	pattern: "^http://(www\\.)?(1am|ada)\\.",
 	type: "middleware",
 	middleware: function (req, res) {
   		res.statusCode = 301;
@@ -14,7 +9,7 @@ module.exports = [{
 		res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
 		res.end();
 	},
-	comment: "HSTS Everything!!"
+	comment: "HSTS Web Endpoints for ada.is and 1am.club"
 },{
 	pattern: "^https://ada\\.is/",
 	type: "static",
