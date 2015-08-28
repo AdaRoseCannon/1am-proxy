@@ -6,7 +6,7 @@ module.exports = [{
 	middleware: function (req, res) {
   		res.statusCode = 301;
 		res.setHeader('Location', 'https://' + req.headers.host.split(':')[0] + req.url);
-		res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+		res.setHeader('Strict-Transport-Security', 'max-age=31536000;');
 		res.end();
 	},
 	comment: "HSTS Web Endpoints for ada.is and 1am.club"
