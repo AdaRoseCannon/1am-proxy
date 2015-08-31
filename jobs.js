@@ -11,7 +11,7 @@ module.exports = [{
 	},
 	comment: "HSTS Web Endpoints for ada.is and 1am.club"
 },{
-	pattern: "^https://ada\\.is/",
+	pattern: "^https://(www\\.)?ada\\.is/",
 	type: "static",
 	target: "/home/ada/ada.is",
 	https: true,
